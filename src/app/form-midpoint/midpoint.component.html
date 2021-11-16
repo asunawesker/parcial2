@@ -1,0 +1,46 @@
+<div class="container mb-5 mt-3">
+    <form id="calculattorForm" [formGroup]="midpointForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title text-center mb-4" style="font-size: 16px;">Punto medio</h3>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row mb-3">
+                <div class="d-flex align-items-end col form-group text-center">
+                    <label class="col-sm-2 control-label" style="font-size: 16px;" for="x1">x1</label>
+                    <div class="col-sm-8" id="input1">
+                        <input id="x1" formControlName="x1" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="d-flex align-items-end col form-group text-center">
+                    <label class="col-sm-2 control-label" style="font-size: 16px;" for="y1">y1</label>
+                    <div class="col-sm-8">
+                        <input id="y1" formControlName="y1" type="text" class="form-control">
+                    </div>
+                </div>
+            </div>    
+            <div class="row">
+                <div class="d-flex align-items-end col form-group text-center">
+                    <label class="col-sm-2 control-label" style="font-size: 16px;" for="x2">x2</label>
+                    <div class="col-sm-8">
+                        <input id="x2" formControlName="x2" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="d-flex align-items-end col  form-group text-center">
+                    <label class="col-sm-2 control-label" style="font-size: 16px;" for="y2">y2</label>
+                    <div class="col-sm-8">
+                        <input id="y2" formControlName="y2" type="text" class="form-control">
+                    </div>
+                </div>
+            </div>    
+        </div>
+        <div class="panel-footer mt-3 text-center mt-4">
+            <button class="btn btn-primary" id="btnCalculate" type="submit">Calcular</button>
+        </div>
+    </form>
+    <div class="container mt-4 text-white text-center rounded pt-2 pb-1" style="background-color: #1abc9c;">
+        <p class="text-justify">Resultado</p>
+        <p><b>{{ result }}</b></p>
+    </div>
+</div>
