@@ -1,7 +1,10 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+  let fixture: ComponentFixture<AppComponent>;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
@@ -10,22 +13,33 @@ describe('AppComponent', () => {
     }).compileComponents();
   });
 
-  it('should create the app', () => {
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+  });
+
+  it('should instance the component', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'parcial2'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('parcial2');
+  it('should have information content', () => {
+    const content = fixture.debugElement.query(By.css('div')).nativeElement;
+    expect(content.innerHTML).not.toBeNull();
+    expect(content.innerHTML.length).toBeGreaterThan(0);
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('parcial2 app is running!');
+  it('should have my fullname as a h1', () => {
+    const h1 = fixture.debugElement.query(By.css('h1')).nativeElement;
+    expect(h1.innerHTML).not.toBeNull();
+    expect(h1.textContent).toContain('Iraís Aguirre Valente');
   });
+
+  it('should have my basic information', () => {
+    const information = fixture.debugElement.query(By.css('p')).nativeElement;
+    expect(information.innerHTML).not.toBeNull();
+    expect(information.textContent).toContain('Unit Testing - Pruebas de softwareEstudiante de Ingeniería de softwareS19004913');
+  });
+
 });
