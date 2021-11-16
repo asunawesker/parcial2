@@ -1,35 +1,42 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
+import { MidpointComponent } from '../app/form-midpoint/midpoint.component';
 
 describe('AppComponent', () => {
+  let fixtureApp: ComponentFixture<AppComponent>;
+  let fixtureMidpoint: ComponentFixture<MidpointComponent>;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
       declarations: [
-        AppComponent
+        AppComponent,
+        MidpointComponent
       ],
     }).compileComponents();
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
+  beforeEach(() => {
+    fixtureApp = TestBed.createComponent(AppComponent);
+    fixtureApp.detectChanges();
+    fixtureMidpoint = TestBed.createComponent(MidpointComponent);
+    fixtureMidpoint.detectChanges();
+  });
+
+  it('should instance the component', () => {
+    const fixtureApp = TestBed.createComponent(AppComponent);
+    const app = fixtureApp.componentInstance;
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'parcial2'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('parcial2');
+  it('should have content on the page', () => {
+    const content = fixtureApp.debugElement.query(By.css('body')).nativeElement;
+    expect(content.innerHTML).not.toBeNull();
+    expect(content.innerHTML.length).toBeGreaterThan(0);
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('parcial2 app is running!');
+  it('Should have "Calcular" in calcular button', () => {
+    const btn = fixtureMidpoint.debugElement.nativeElement.querySelector('#btnCalculate');
+    expect(btn.innerHTML).toBe('Calcular');
   });
 });
