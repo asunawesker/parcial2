@@ -29,7 +29,7 @@ describe('Midpoint formula', () => {
         expect(midpoint).toEqual(midpointWaited);
     });
 
-    it('abscissa should be on the origin', () => {
+    it('abscissa should be on the origin and the midpoint should be (0, 2)', () => {
         let midpoint = formula.midpoint(1, 2,-1, 2);
 
         let midpointWaited = {
@@ -40,7 +40,7 @@ describe('Midpoint formula', () => {
         expect(midpoint).toEqual(midpointWaited);
     });
 
-    it('ordinate should be on the origin', () => {
+    it('ordinate should be on the origin and the midpoint should be (5, 0)', () => {
         let midpoint = formula.midpoint(5, 2, 5, -2);
 
         let midpointWaited = {
