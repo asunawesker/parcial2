@@ -1,45 +1,42 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
+import { MidpointComponent } from '../app/form-midpoint/midpoint.component';
 
 describe('AppComponent', () => {
-  let fixture: ComponentFixture<AppComponent>;
+  let fixtureApp: ComponentFixture<AppComponent>;
+  let fixtureMidpoint: ComponentFixture<MidpointComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        MidpointComponent
       ],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
+    fixtureApp = TestBed.createComponent(AppComponent);
+    fixtureApp.detectChanges();
+    fixtureMidpoint = TestBed.createComponent(MidpointComponent);
+    fixtureMidpoint.detectChanges();
   });
 
   it('should instance the component', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
+    const fixtureApp = TestBed.createComponent(AppComponent);
+    const app = fixtureApp.componentInstance;
     expect(app).toBeTruthy();
   });
 
-  it('should have information content', () => {
-    const content = fixture.debugElement.query(By.css('div')).nativeElement;
+  it('should have content on the page', () => {
+    const content = fixtureApp.debugElement.query(By.css('body')).nativeElement;
     expect(content.innerHTML).not.toBeNull();
     expect(content.innerHTML.length).toBeGreaterThan(0);
   });
 
-  it('should have my fullname as a h1', () => {
-    const h1 = fixture.debugElement.query(By.css('h1')).nativeElement;
-    expect(h1.innerHTML).not.toBeNull();
-    expect(h1.textContent).toContain('Iraís Aguirre Valente');
+  it('Should have "Calcular" in calcular button', () => {
+    const btn = fixtureMidpoint.debugElement.nativeElement.querySelector('#btnCalculate');
+    expect(btn.innerHTML).toBe('Calcular');
   });
-
-  it('should have my basic information', () => {
-    const information = fixture.debugElement.query(By.css('p')).nativeElement;
-    expect(information.innerHTML).not.toBeNull();
-    expect(information.textContent).toContain('Unit Testing - Pruebas de softwareEstudiante de Ingeniería de softwareS19004913');
-  });
-
 });
